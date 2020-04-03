@@ -5,14 +5,14 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class Player : MonoBehaviour
 {
-    [Tooltip("In ms^-1")][SerializeField] float speed = 30f;
+    [Tooltip("In ms^-1")][SerializeField] float speed = 20f;
     [Tooltip("In m")] [SerializeField] float xRange = 15f;
     [Tooltip("In m")] [SerializeField] float yRange = 10f;
 
     [SerializeField] float positionPitchFactor = -1.5f;
     [SerializeField] float controlPitchFactor = -10f;
-    [SerializeField] float positionYawFactor = 1f;
-    [SerializeField] float controlRollFactor = -15f;
+    [SerializeField] float positionYawFactor = 3.5f;
+    [SerializeField] float controlRollFactor = -30f;
 
     float xThrow, yThrow;
 
@@ -61,10 +61,10 @@ public class Player : MonoBehaviour
         float clampedYPos = Mathf.Clamp(rawYPos, -yRange, yRange);
 
 
-        print("clampedXPos");
-        print(clampedXPos);
-        print("clampedYPos");
-        print(clampedYPos);
+        //print("clampedXPos");
+        //print(clampedXPos);
+        //print("clampedYPos");
+        //print(clampedYPos);
 
         //localPosition needs a vector three it is not included
 
