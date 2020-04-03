@@ -9,6 +9,12 @@ public class Player : MonoBehaviour
     [Tooltip("In m")] [SerializeField] float xRange = 15f;
     [Tooltip("In m")] [SerializeField] float yRange = 10f;
 
+    [SerializeField] float positionPitchFactor = -1.5f;
+    [SerializeField] float controlPitchFactor = -10f;
+    [SerializeField] float positionYawFactor = 1f;
+    [SerializeField] float controlRollFactor = -15f;
+
+    float xThrow, yThrow;
 
     // Start is called before the first frame update
     void Start()
@@ -19,9 +25,30 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ProcessTranslations();
+        ProcessRotation();
+    }
+
+    private void ProcessRotation()
+    {
+        //        trasform.localRotation.x < dont do like this, create a rotation
+        float pitchDueToPosition = transform.localPosition.y * positionPitchFactor;
+        float pitchDueToControlThrow = yThrow * controlPitchFactor;
+
+        float pitch = pitchDueToPosition + pitchDueToControlThrow;
+
+        float yaw = transform.localPosition.x * positionYawFactor;
+
+        float roll = xThrow * controlRollFactor;
+
+        transform.localRotation = Quaternion.Euler(pitch, yaw, roll);
+    }
+
+    private void ProcessTranslations()
+    {
         //this will also work for a game remote
-        float xThrow = CrossPlatformInputManager.GetAxis("Horizontal");
-        float yThrow = CrossPlatformInputManager.GetAxis("Vertical");
+        xThrow = CrossPlatformInputManager.GetAxis("Horizontal");
+        yThrow = CrossPlatformInputManager.GetAxis("Vertical");
 
         float xOffset = xThrow * speed * Time.deltaTime;
         float yOffset = yThrow * speed * Time.deltaTime;
