@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
 public class PlayerCenter : MonoBehaviour
+
+    //todo workout why sometimes slow on first play of scene
+
 {
     [Header("General")]
     [Tooltip("In ms^-1")] [SerializeField] float controlSpeed = 20f;
@@ -23,6 +26,7 @@ public class PlayerCenter : MonoBehaviour
 
     bool isControlEnabled = true;
 
+
     // Start is called before the first frame update
     //deleted for lecture called SendMessage() Between Components
     // void Start()
@@ -35,25 +39,27 @@ public class PlayerCenter : MonoBehaviour
     //     print("Player collided with something.");
     // }
     //good to help debug
-    void OnTriggerEnter(Collider other)
-    {
-        print("Player triggered something.");
-    }
+    // void OnTriggerEnter(Collider other)
+    // {
+    //     print("Player triggered something.");
+    // }
 
     // Update is called once per frame
     void Update()
     {
-        print("Update");
+        // print("Update");
         if (isControlEnabled)
         {
+            print("ready");
             ProcessTranslations();
             ProcessRotation();
         }
+
     }
 
     void OnPlayerDeath() //called by string reference
     {
-        print("OnPlayerDeath");
+        // print("Controls frozen");
         isControlEnabled = false;
     }
 
