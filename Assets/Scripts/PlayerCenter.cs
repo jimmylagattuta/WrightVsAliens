@@ -50,7 +50,7 @@ public class PlayerCenter : MonoBehaviour
         // print("Update");
         if (isControlEnabled)
         {
-            print("ready");
+            // print("ready");
             ProcessTranslations();
             ProcessRotation();
         }
@@ -61,6 +61,7 @@ public class PlayerCenter : MonoBehaviour
     {
         // print("Controls frozen");
         isControlEnabled = false;
+        // Destroy(gameObject);
     }
 
     private void ProcessRotation()
