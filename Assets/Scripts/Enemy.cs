@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] GameObject deathFx;
     [SerializeField] Transform parent;
+    [SerializeField] int healthPoints = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,14 @@ public class Enemy : MonoBehaviour
     // }
 
     void OnParticleCollision(GameObject other)
+    {
+        healthPoints = healthPoints + 1;
+        if (healthPoints > 1) 
+        {
+            KillEnemy();
+        }
+    }
+    private void KillEnemy()
     {
         GameObject fx = Instantiate(deathFx, transform.position, Quaternion.identity);
         fx.transform.parent = parent;
